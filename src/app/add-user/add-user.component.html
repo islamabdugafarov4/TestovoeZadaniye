@@ -1,0 +1,51 @@
+<div style="text-align:center">
+  <h1>
+    Страница {{ title }}!
+  </h1>
+  <h2 style="text-align: center;"> Заполните формы чтобы перейти во вкладку пользователи и нажмите сохранить</h2>
+  <ng-container >
+    <div >
+      <form [formGroup]="form" class="container" (ngSubmit)="onSubmit(form)">
+        <div class="centralput">
+          <label position="floating">Фамилия</label>
+          <br>
+          <input type="text" formControlName="lastName"/>
+        </div>
+        <br>
+        <div class="centralput">
+          <label position="floating">Имя</label>
+          <br>
+          <input type="text" formControlName="firstName" />
+        </div>
+        <br>
+        <div class="centralput">
+          <label position="floating">Отчество</label>
+          <br>
+          <input type="text" formControlName="patronimyc"/>
+        </div>
+        <br>
+        <div class="centralput">
+          <label position="floating">Телефон</label>
+          <br>
+          <input type="text" formControlName="phone"/>
+        </div>
+        <br>
+        <div class="centralput">
+          <label position="floating">Специализация</label>
+          <br>
+          <input type="text" formControlName="specialization"/>
+        </div>
+        <div class="centralput">
+          <label position="floating">Информация о себе</label>
+          <br>
+          <textarea></textarea>
+        </div>
+        <button  type="submit" class="btn btn-warning centralput" [disabled]="form.invalid">Сохранить</button>
+      </form>
+    </div>
+
+
+
+
+  </ng-container>
+</div>

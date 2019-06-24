@@ -1,0 +1,27 @@
+button{
+  color:white;
+}
+a{
+  text-align: center;
+
+}
+input{
+  background-color: #ffffff;
+  color: #859fff;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+.container{
+  background-color: blanchedalmond;
+  border-color: brown;
+  border-radius:12px;
+}
+.centralput{
+  text-align: center;
+  align-self: center;
+}
+textarea{
+  width: 500px;
+  height: 200px;
+}

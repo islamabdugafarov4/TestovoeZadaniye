@@ -1,0 +1,27 @@
+<div class="card text-center" *ngFor="let item of user">
+  <div class="card-header">
+    Карточка-{{item.id+1}}
+  </div>
+  <div >
+    <div class="card-body" >
+      <h5 class="card-title">{{item.firstName}} {{item.lastName}} {{item.patronimyc}}<br>
+        <p>{{item.specialization}}</p></h5>
+      <p class="card-text">{{item.info}}</p>
+      <a href="#" class="btn btn-primary">Подробнее</a>
+    </div>
+    <div class="card-footer text-muted">
+      {{item.phone}}
+    </div>
+  </div>
+</div>
+
+<pagination-controls (pageChange)="pageChange($event)"
+                     [maxSize]="maxSize"
+                     [directionLinks]="directionLinks"
+                     [autoHide]="autoHide"
+                     [responsive]="responsive"
+                     [previousLabel]="labels.previousLabel"
+                     [nextLabel]="labels.nextLabel"
+                     [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
+                     [screenReaderPageLabel]="labels.screenReaderPageLabel"
+                     [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"></pagination-controls>
