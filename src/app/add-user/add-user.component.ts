@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
+import {ActivatedRoute, Router} from "@angular/router";
+import {ApiService} from "../services/api.service";
 
 @Component({
   selector: 'app-add-user',
@@ -11,20 +11,40 @@ import {HttpClient} from "@angular/common/http";
 export class AddUserComponent implements OnInit {
   title = 'TestovoeZadaniye';
   form: FormGroup;
-  constructor(private formbuilder:FormBuilder,private router:Router,private http:HttpClient) { }
-  onSubmit(form){
-    if (form.valid) {
-      this.http.post('http://localhost:3000/users/',form.value);
-      this.router.navigateByUrl('list');
-    }}
+  constructor(private formbuilder: FormBuilder,private api:ApiService,private activatedRoute:ActivatedRoute) {
+  }
+  updateUser() {
+    this.api.updateUser({
+      firstName:this.formName('firstName').value,
+      lastName:this.formName('lastName').value,
+      patronimyc:this.formName('patronimyc').value,
+      phone:this.formName('phone').value,
+      info:this.formName('info').value,
+      specialization:this.formName('specialization').value,
+    },this.activatedRoute.snapshot.paramMap.get('id'));
+  }
   ngOnInit() {
     this.form = this.formbuilder.group({
-      firstName:['',[Validators.required]],
-      lastName:['',[Validators.required]],
-      specialization:['',[Validators.required]],
-      patronimyc:[''],
-      phone:['',[Validators.required]]
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      specialization: ['', [Validators.required]],
+      patronimyc: [''],
+      phone: ['', [Validators.required]],
+      info: [''],
     });
   }
-
+ formName(name){
+    return this.form.controls[name];
+}
+  onSubmit() {
+this.api.addUser({
+  firstName:this.formName('firstName').value,
+  lastName:this.formName('lastName').value,
+  patronimyc:this.formName('patronimyc').value,
+  phone:this.formName('phone').value,
+  info:this.formName('info').value,
+  specialization:this.formName('specialization').value,
+}
+);
+  }
 }

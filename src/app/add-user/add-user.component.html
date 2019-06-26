@@ -3,49 +3,48 @@
     Страница {{ title }}!
   </h1>
   <h2 style="text-align: center;"> Заполните формы чтобы перейти во вкладку пользователи и нажмите сохранить</h2>
-  <ng-container >
-    <div >
-      <form [formGroup]="form" class="container" (ngSubmit)="onSubmit(form)">
-        <div class="centralput">
-          <label position="floating">Фамилия</label>
-          <br>
-          <input type="text" formControlName="lastName"/>
-        </div>
+
+  <form [formGroup]="form" >
+    <div class="form-group list-group-item-secondary">
+      <div class="form-control-lg">
+        <label for="lastName">Фамилия</label>
         <br>
-        <div class="centralput">
-          <label position="floating">Имя</label>
-          <br>
-          <input type="text" formControlName="firstName" />
-        </div>
+        <input id="lastName" type="text" formControlName="lastName" />
+      </div>
+      <br>
+      <div class="form-control-lg">
+
+        <label for="firstName">Имя</label>
         <br>
-        <div class="centralput">
-          <label position="floating">Отчество</label>
-          <br>
-          <input type="text" formControlName="patronimyc"/>
-        </div>
+        <input id="firstName" type="text" formControlName="firstName"/>
+      </div>
+      <br>
+      <div class="form-control-lg ">
+
+        <label for="patronimyc">Отчество</label>
         <br>
-        <div class="centralput">
-          <label position="floating">Телефон</label>
-          <br>
-          <input type="text" formControlName="phone"/>
-        </div>
+        <input id="patronimyc" type="text" formControlName="patronimyc"/>
+      </div>
+      <br>
+      <div class="form-control-lg">
+
+        <label for="phone">Телефон</label>
         <br>
-        <div class="centralput">
-          <label position="floating">Специализация</label>
-          <br>
-          <input type="text" formControlName="specialization"/>
-        </div>
-        <div class="centralput">
-          <label position="floating">Информация о себе</label>
-          <br>
-          <textarea></textarea>
-        </div>
-        <button  type="submit" class="btn btn-warning centralput" [disabled]="form.invalid">Сохранить</button>
-      </form>
+        <input id="phone" type="text" formControlName="phone"/>
+      </div>
+      <br>
+      <div class="form-control-lg">
+        <label for="spec">Специализация</label>
+        <br>
+        <input id="spec" type="text" formControlName="specialization"/>
+      </div>
+      <br>
+      <div class="form-control-lg">
+        <label for="info">Информация о себе</label></div>
+      <textarea id="info" type="text" formControlName="info"></textarea>
+
     </div>
-
-
-
-
-  </ng-container>
+    <button type="submit" class="btn btn-warning" [disabled]="form.invalid" (click)="onSubmit()">Сохранить</button>
+    <button type="submit" class="btn btn-warning" (click)="updateUser()" [disabled]="form.invalid">Изменить</button>
+  </form>
 </div>
