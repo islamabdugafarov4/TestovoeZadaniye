@@ -4,47 +4,42 @@
   </h1>
   <h2 style="text-align: center;"> Заполните формы чтобы перейти во вкладку пользователи и нажмите сохранить</h2>
 
-  <form [formGroup]="form" >
+  <form [formGroup]="form">
     <div class="form-group list-group-item-secondary">
       <div class="form-control-lg">
         <label for="lastName">Фамилия</label>
-        <br>
-        <input id="lastName" type="text" formControlName="lastName" />
+        <input id="lastName" type="text" formControlName="lastName" [value]="user.lastName"/>
       </div>
-      <br>
-      <div class="form-control-lg">
+      <div class="alert alert-danger" *ngIf="onReturnFN('lastName').invalid && onReturnFN('firstName').touched">Форма обязательна для заполнения</div>
 
+      <div class="form-control-lg">
         <label for="firstName">Имя</label>
-        <br>
-        <input id="firstName" type="text" formControlName="firstName"/>
+        <input id="firstName" type="text" formControlName="firstName" [value]="user.firstName"/>
       </div>
-      <br>
+      <div class="alert alert-danger" *ngIf="onReturnFN('firstName').invalid && onReturnFN('firstName').touched">Форма обязательна для заполнения</div>
+
       <div class="form-control-lg ">
-
         <label for="patronimyc">Отчество</label>
-        <br>
-        <input id="patronimyc" type="text" formControlName="patronimyc"/>
+        <input id="patronimyc" type="text" formControlName="patronimyc" [value]="user.patronimyc"/>
       </div>
-      <br>
-      <div class="form-control-lg">
+      <div class="alert alert-danger" *ngIf="onReturnFN('patronimyc').invalid && onReturnFN('patronimyc').touched">Форма обязательна для заполнения</div>
 
+      <div class="form-control-lg">
         <label for="phone">Телефон</label>
-        <br>
-        <input id="phone" type="text" formControlName="phone"/>
+        <input id="phone" type="text" formControlName="phone" [value]="user.phone"/>
       </div>
-      <br>
+      <div class="alert alert-danger" *ngIf="onReturnFN('phone').invalid && onReturnFN('phone').touched">Форма обязательна для заполнения</div>
+
       <div class="form-control-lg">
         <label for="spec">Специализация</label>
-        <br>
-        <input id="spec" type="text" formControlName="specialization"/>
+        <input id="spec" type="text" formControlName="specialization" [value]="user.specialization"/>
       </div>
-      <br>
+      <div class="alert alert-danger" *ngIf="onReturnFN('specialization').invalid && onReturnFN('specialization').touched">Форма обязательна для заполнения</div>
       <div class="form-control-lg">
         <label for="info">Информация о себе</label></div>
-      <textarea id="info" type="text" formControlName="info"></textarea>
-
+      <textarea id="info" type="text" formControlName="info" [value]="user.info"></textarea>
     </div>
+    <div class="alert alert-danger" *ngIf="onReturnFN('info').invalid && onReturnFN('info').touched">Форма обязательна для заполнения</div>
     <button type="submit" class="btn btn-warning" [disabled]="form.invalid" (click)="onSubmit()">Сохранить</button>
-    <button type="submit" class="btn btn-warning" (click)="updateUser()" [disabled]="form.invalid">Изменить</button>
   </form>
 </div>

@@ -1,12 +1,12 @@
 <h2>Количество записей-
   <select class="custom-select-lg btn btn-outline-info ">
     <option>Выберите</option>
-    <option *ngFor="let item of user;let i=index" (click)="chooseNum(user.length+i-1)">{{user.length+i-1}}</option>
+    <option *ngFor="let item of user;let i=index" ></option>
 
   </select>
 </h2>
 
-<div class="card text-center" *ngFor="let item of user.slice(start,end);">
+<div class="card text-center" *ngFor="let item of user|async">
   <div class="card-header">
     Карточка-{{item.id}}
   </div>
@@ -15,7 +15,7 @@
        ФИО: {{item.firstName}} {{item.lastName}} {{item.patronimyc}}<br>
         <p>Специализация:{{item.specialization}}</p></h5>
       <p class="card-text">Информация о себе:{{item.info}}</p>
-      <a class="btn btn-primary" (click)="delete(item.id)">Удалить</a>
+      <a class="btn btn-primary" (click)="onDelete(item.id)">Удалить</a>
     </div>
     <div class="card-footer text-muted">
       Телефон:{{item.phone}}
@@ -25,8 +25,8 @@
 <button routerLink="/home" class="btn btn-outline-danger col-md-4 text-center" >Добавить</button>
 <nav class="aria-label">
   <ul class="pagination">
-  <li class="page-item" *ngFor="let num of getArrayFromNum(user.length);let i=index">
-    <a class="page-link active" (click)="addIndex(i)" >{{i+1}}</a>
+  <li class="page-item">
+    <a class="page-link active"  ></a>
   </li>
   </ul>
 

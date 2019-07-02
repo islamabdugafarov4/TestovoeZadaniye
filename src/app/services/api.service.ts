@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {Observable} from "rxjs";
@@ -10,24 +10,22 @@ import {FormGroup} from "@angular/forms";
   providedIn: 'root'
 })
 export class ApiService {
-  constructor(private http:HttpClient,private router:Router) { }
-  addUser(values){
-    this.http.post('http://localhost:3004/users',values).subscribe(res=>{console.log(res)});
-    this.router.navigateByUrl('list');
+  constructor(private http: HttpClient) {
   }
-  deleteUser(id){
-    this.http.delete('http://localhost:3004/users/'+id).subscribe(res=>{
-      console.log('User deleted'+res.toString());
-    });
-    this.router.navigateByUrl('list');
+
+  onAddUser(form: FormGroup) {
+    return this.http.post('http://localhost:3004/users', form.value);
   }
-  updateUser(values,id){
-    this.http.put('http://localhost:3004/users/'+id,values).subscribe(res=>{
-      console.log("User updated"+res);
-      this.router.navigateByUrl('list');
-    })
+
+  onDeleteUser(id: number) {
+    return this.http.delete('http://localhost:3004/users/' + id);
   }
-  getUsers(){
- return  this.http.get('http://localhost:3004/users');
+
+  onUpdateUser(id: string, form: FormGroup) {
+    return this.http.put('http://localhost:3004/users/' + id, form.value);
+  }
+
+  onGetUsers(): Observable<User[]> {
+    return this.http.get<User[]>('http://localhost:3004/users');
   }
 }

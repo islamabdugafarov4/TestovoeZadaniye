@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from "../services/api.service";
 import {User} from "../models/user";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-list',
@@ -8,9 +9,7 @@ import {User} from "../models/user";
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  user:User[]=[];
-  start: number=0;
-  end: number=3;
+  user: Observable<User[]>;
 
 
   constructor(private api: ApiService) {
@@ -20,31 +19,14 @@ export class ListComponent implements OnInit {
 
 
   ngOnInit() {
-this.api.getUsers().subscribe((res:User[])=>{
-  this.user = res;
-});
-
+    this.user = this.api.onGetUsers();
 
 
   }
 
-  addIndex(pageNumber){
-    this.start = pageNumber*3;
-    this.end = this.start+3
-  }
-  delete(id) {
-    this.api.deleteUser(id);
+
+  onDelete(id: number) {
+    this.api.onDeleteUser(id);
   }
 
-
-
-
-  getArrayFromNum(length) {
-     return new Array(length).map((a,num)=>{
-       return num;
-     })
-  }
-  chooseNum(num){
-   return  this.user.slice(0,num);
-  }
 }
